@@ -1,0 +1,14 @@
+name: EK-AutoSell
+main: com.github.scilldev.AutoSell
+version: @version@
+
+authors: [ Scill ]
+description: Automatically sell items to the shop!
+api-version: 1.18
+softdepend: [ Vault, ShopGUIPlus ]
+
+commands:
+  autosell:
+    description: Toggle autosell.
+  autopickup:
+    description: Toggle autopickup.

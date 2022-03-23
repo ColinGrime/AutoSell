@@ -1,0 +1,30 @@
+# Save your player data:
+mysql:
+  host: 'localhost'
+  port: 3306
+  database: 'minecraft'
+  username: 'root'
+  password: ''
+
+auto-pickup:
+  block-xp: false
+  mob-xp: true
+  # See here: https://hub.spigotmc.org/javadocs/spigot/org/bukkit/entity/LivingEntity.html
+  enabled-mobs:
+    - Zombie
+    - Skeleton
+
+messages:
+  # Toggle messages:
+  toggle:
+    autosell-on: '&aAuto Sell has been toggled on!'
+    autosell-off: '&cAuto Sell has been toggled off.'
+    autopickup-on: '&aAuto Pickup has been toggled on!'
+    autopickup-off: '&cAuto Pickup has been toggled off.'
+  # Error messages:
+  invalid:
+    permission: '&cYou do not have permission to perform this command.'
+    sender: '&cYou must be a player to perform this command.'
+  # Admin messages:
+  admin:
+    reloaded: '&aAutoSell has been reloaded!'
