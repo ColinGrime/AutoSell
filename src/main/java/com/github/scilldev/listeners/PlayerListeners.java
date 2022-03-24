@@ -11,12 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockBreakEvent;
-import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.PlayerInventory;
 
 import java.util.Collection;
 import java.util.Iterator;
@@ -36,7 +34,7 @@ public class PlayerListeners implements Listener {
 		Collection<ItemStack> items = event.getBlock().getDrops(player.getInventory().getItemInMainHand(), player);
 
 		// ignore, nothing interesting is happening...
-		if (items.isEmpty() || (!plugin.isAutoSellEnabled() && !plugin.getPlayerPreferences().isAutoPickOn(player))) {
+		if (items.isEmpty() || (!plugin.isAutoSellEnabled() && !plugin.getPlayerPreferences().isAutoPickupOn(player))) {
 			return;
 		}
 
@@ -106,7 +104,7 @@ public class PlayerListeners implements Listener {
 	 */
 	private void tryAutoPickup(Player player, Location dropLocation, Collection<ItemStack> items) {
 		// auto pickup blocks
-		if (plugin.getPlayerPreferences().isAutoPickOn(player)) {
+		if (plugin.getPlayerPreferences().isAutoPickupOn(player)) {
 			items = player.getInventory().addItem(items.toArray(new ItemStack[0])).values();
 		}
 
