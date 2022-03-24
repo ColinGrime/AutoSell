@@ -1,5 +1,6 @@
 package com.github.scilldev;
 
+import com.github.scilldev.data.yaml.Messages;
 import org.bukkit.entity.Player;
 
 import java.util.HashMap;
@@ -15,18 +16,26 @@ public class PlayerPreferences {
 		return autoSell.getOrDefault(player.getUniqueId(), false);
 	}
 
-	public boolean toggleAutoSell(Player player) {
-		autoSell.put(player.getUniqueId(), !isAutoSellOn(player));
-		return isAutoSellOn(player);
+	public void setAutoSell(Player player, boolean toggle) {
+		autoSell.put(player.getUniqueId(), toggle);
+
+		if (toggle)
+			Messages.TOGGLE_AUTOSELL_ON.sendTo(player);
+		else
+			Messages.TOGGLE_AUTOSELL_OFF.sendTo(player);
 	}
 
-	public boolean isAutoPickOn(Player player) {
+	public boolean isAutoPickupOn(Player player) {
 		return autoPickup.getOrDefault(player.getUniqueId(), false);
 	}
 
-	public boolean toggleAutoPickup(Player player) {
-		autoPickup.put(player.getUniqueId(), !isAutoPickOn(player));
-		return isAutoPickOn(player);
+	public void setAutoPickup(Player player, boolean toggle) {
+		autoPickup.put(player.getUniqueId(), toggle);
+
+		if (toggle)
+			Messages.TOGGLE_AUTOPICKUP_ON.sendTo(player);
+		else
+			Messages.TOGGLE_AUTOPICKUP_OFF.sendTo(player);
 	}
 
 	public Map<UUID, Boolean> getAutoSell() {

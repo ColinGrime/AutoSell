@@ -1,7 +1,7 @@
 package com.github.scilldev.commands;
 
 import com.github.scilldev.AutoSell;
-import com.github.scilldev.data.yaml.Messages;
+import com.github.scilldev.PlayerPreferences;
 import org.bukkit.entity.Player;
 
 public class AutoSellCommand extends AutoCommand {
@@ -16,10 +16,21 @@ public class AutoSellCommand extends AutoCommand {
 	}
 
 	@Override
-	public void onCommand(Player player) {
-		if (getPlugin().getPlayerPreferences().toggleAutoSell(player))
-			Messages.TOGGLE_AUTOSELL_ON.sendTo(player);
-		else
-			Messages.TOGGLE_AUTOSELL_OFF.sendTo(player);
+	public void onCommand(Player player, String[] args) {
+		PlayerPreferences preferences = getPlugin().getPlayerPreferences();
+
+		// manual on/off
+		if (args.length > 0) {
+			if (args[0].equalsIgnoreCase("on")) {
+				preferences.setAutoSell(player, true);
+				return;
+			} else if (args[0].equalsIgnoreCase("off")) {
+				preferences.setAutoSell(player, false);
+				return;
+			}
+		}
+
+		// toggles it on/off
+		preferences.setAutoSell(player, !preferences.isAutoSellOn(player));
 	}
 }

@@ -47,7 +47,7 @@ public abstract class AutoCommand implements CommandExecutor {
 
 		// specific auto sub-command
 		else {
-			onCommand((Player) sender);
+			onCommand((Player) sender, args);
 		}
 
 		return true;
@@ -62,7 +62,7 @@ public abstract class AutoCommand implements CommandExecutor {
 	 * Runs additional code for each auto command.
 	 * @param player any player
 	 */
-	public abstract void onCommand(Player player);
+	public abstract void onCommand(Player player, String[] args);
 
 	public AutoSell getPlugin() {
 		return plugin;
